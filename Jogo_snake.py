@@ -24,17 +24,18 @@ pygame.display.set_caption('Snake Retrô')
 # Criando guia princípal e nome do jogo
 janela = pygame.display.set_mode((480,320))
 pygame.display.set_caption('Snake Retrô')
-# musicas e imagens 
+
+# Musicas e imagens 
 musica_inicio =os.path.join('assets','musicas','musica_inicio.mp3') 
 pygame.mixer.music.load(musica_inicio)
 pygame.mixer.music.set_volume(0.4)
 pygame.mixer.music.play(-1)
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 
-#maça aparecendo em lugar aleatorio 
-maca_w= 50
-maca_h= 50
-maca= pygame.image.load('assets/Imagens/tomate.png').convert()
+# Maça aparecendo em lugar aleatorio 
+maca_w = 25
+maca_h = 25
+maca = pygame.image.load('assets/Imagens/tomate.png').convert()
 maca_pequena=pygame.transform.scale(maca, (maca_w, maca_h))
 maca_x = random.randint(0,480)
 maca_y = random.randint(0,320)
