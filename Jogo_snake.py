@@ -4,15 +4,12 @@ import random
 import os
 pygame.init()
 # Criando guia princípal e nome do jogo
-janela = pygame.display.set_mode((480,320))
-pygame.display.set_caption('Snake Retrô')
-
 tamanho = 10 
-largura=480
-altura=320
+largura = 480
+altura = 320
 
-plano_fundo = pygame.image.load('img/img123.jpg').convert() 
-plano_fundo = pygame.transform.scale(plano_fundo,(largura,altura)) 
+janela = pygame.display.set_mode((largura,altura))
+pygame.display.set_caption('Snake Retrô')
 
 # Criando guia princípal e nome do jogo
 janela = pygame.display.set_mode((480,320))
