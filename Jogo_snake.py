@@ -14,7 +14,11 @@ pygame.display.set_caption('Snake Retrô')
 # Criando guia princípal e nome do jogo
 janela = pygame.display.set_mode((480,320))
 pygame.display.set_caption('Snake Retrô')
-
+# musicas e imagens 
+musica_inicio =os.path.join('assets','musicas','musica_inicio.mp3') 
+pygame.mixer.music.load(musica_inicio)
+pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.play(-1)
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 
 game = True
