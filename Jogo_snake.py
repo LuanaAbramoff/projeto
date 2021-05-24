@@ -2,11 +2,21 @@
 import pygame
 import random
 import os
+
 pygame.init()
-# Criando guia princípal e nome do jogo
+
+# Definindo medidas
 tamanho = 10 
 largura = 480
 altura = 320
+
+# Definindo cores
+vermelho = (255, 0, 0)
+verde = (0, 255, 0)
+azul = (0, 0, 255)
+branco = (255, 255, 255)
+preto = (0, 0, 0)
+
 
 janela = pygame.display.set_mode((largura,altura))
 pygame.display.set_caption('Snake Retrô')
@@ -17,7 +27,7 @@ pygame.display.set_caption('Snake Retrô')
 # musicas e imagens 
 musica_inicio =os.path.join('assets','musicas','musica_inicio.mp3') 
 pygame.mixer.music.load(musica_inicio)
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(0.4)
 pygame.mixer.music.play(-1)
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 
