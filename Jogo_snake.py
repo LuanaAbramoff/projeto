@@ -34,8 +34,8 @@ pygame.mixer.music.play(-1)
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 
 #maça aparecendo em lugar aleatorio 
-maca_w= 25
-maca_h= 25
+maca_w= 15
+maca_h= 15
 maca= pygame.image.load('assets/Imagens/Untitled-1.png').convert()
 maca_pequena=pygame.transform.scale(maca, (maca_w, maca_h))
 maca_x = random.randint(0,480)
