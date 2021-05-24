@@ -2,6 +2,7 @@
 import pygame
 import random
 import os
+from Classes import *
 
 pygame.init()
 
