@@ -21,14 +21,24 @@ pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.play(-1)
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 
+#maça aparecendo em lugar aleatorio 
+maca_w= 50
+maca_h= 50
+maca= pygame.image.load('assets/Imagens/tomate.png').convert()
+maca_pequena=pygame.transform.scale(maca, (maca_w, maca_h))
+maca_x = random.randint(0,480)
+maca_y = random.randint(0,320)
+
 game = True
 
 while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
+
     janela.fill((0,0,0))
     janela.blit(fundo_jogo, (0, 0))
+    janela.blit(maca_pequena, (maca_x, maca_y))
     pygame.display.update()
 
 pygame.quit()
