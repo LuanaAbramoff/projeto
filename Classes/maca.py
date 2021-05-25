@@ -1,6 +1,6 @@
 import pygame
 import random
-import os
+
 #class macav:
     #maca_w= 15
     #maca_h= 15

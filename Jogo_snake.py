@@ -132,7 +132,7 @@ while inicio_do_jogo:
                         cob.recomeco()
                         #falta atualizar os pontos
                         pygame.mixer.music.load(musica_inicio)
-                        pygame.mixer.music.set_volume(0.1)
+                        pygame.mixer.music.set_volume(0.5)
                         pygame.mixer.music.play(-1)
         if fim_do_jogo == True:
         # musica do final 
