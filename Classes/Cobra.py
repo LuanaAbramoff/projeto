@@ -31,7 +31,7 @@ class Cobra:
         if any(Bloco == self.cobra_0 for Bloco in self.cobra_xy[:-1]):
             self.fimdejogo = True
 
-    def recomeco(self):
+    def reinicio(self):
             self.x = randint(0,(largura-tamanho)/10)*10
             self.y = randint(0,(altura-tamanho)/10)*10
             self.vel_x = 0

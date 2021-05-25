@@ -129,7 +129,7 @@ while inicio_do_jogo:
                     if event.key == pygame.K_q:
                         fim_do_jogo=False
                         jogo=True
-                        cob.recomeco()
+                        cob.reinicio()
                         #falta atualizar os pontos
                         pygame.mixer.music.load(musica_inicio)
                         pygame.mixer.music.set_volume(0.5)
