@@ -1,6 +1,10 @@
 from random import *
 import pygame
-
+tamanho = 10 
+largura = 480
+altura = 320
+branco = (255, 255, 255)
+fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 class Cobra:
     def __init__(self):
         self.x = randint(0,(largura-tamanho)/10)*10
