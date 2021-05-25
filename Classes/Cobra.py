@@ -1,5 +1,6 @@
 from random import *
 import pygame
+
 class Cobra:
     def __init__(self):
         self.x = randint(0,(largura-tamanho)/10)*10
@@ -25,3 +26,14 @@ class Cobra:
     def morte(self):
         if any(Bloco == self.cobra_0 for Bloco in self.cobra_xy[:-1]):
             self.fimdejogo = True
+
+    def recomeco(self):
+            self.x = randint(0,(largura-tamanho)/10)*10
+            self.y = randint(0,(altura-tamanho)/10)*10
+            self.vel_x = 0
+            self.vel_y = 0
+            self.cobra_xy = []
+            self.cobra_comp = 1
+            self.cobra_0 = []
+            self.pontos = 0
+            self.fimdejogo = False        
