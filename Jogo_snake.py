@@ -1,6 +1,6 @@
 #=================== Inicialização ===============
 import pygame
-from random import *
+import random
 import os
 
 
@@ -38,7 +38,6 @@ fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 #maça aparecendo em lugar aleatorio 
 maca_w= 15
 maca_h= 15
-
 maca= pygame.image.load('assets/Imagens/Untitled-1.png').convert()
 maca_pequena =pygame.transform.scale(maca, (maca_w, maca_h))
 maca_x = random.randint(0,480)
@@ -97,8 +96,6 @@ jogo = False
 fim_do_jogo = False
 inicio_do_jogo = True
 
-cob = Cobra()
-#mac = maca()
 palavra = textos("Game Over", vermelho, 37)
 palavra2 = textos("Pontuação: " , branco, 27)
 palavra3 = textos("aperte Q",branco,27)
@@ -158,7 +155,7 @@ while inicio_do_jogo:
                     if event.key == pygame.K_q:
                         fim_do_jogo=False
                         jogo=True
-                        cob.recomeco()
+                        
                         #falta atualizar os pontos
                         pygame.mixer.music.load(musica_inicio)
                         pygame.mixer.music.set_volume(0.5)
