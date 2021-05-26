@@ -88,10 +88,10 @@ inicio_do_jogo = True
 
 palavra = textos("Game Over", vermelho, 37)
 palavra2 = textos("Pontuação: " , branco, 27)
-palavra3 = textos("aperte Q",branco,27)
-palavra4 = textos("Deseja continuar?",branco,27)
-palavra5 = textos("Snake Retrô",branco,35)
-palavra6 = textos("Escolha o nível de dificuldade do jogo:",vermelho,27)
+palavra3 = textos("aperte Q", branco,27)
+palavra4 = textos("Deseja continuar?", branco,27)
+palavra5 = textos("Snake Retrô", branco,35)
+palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
 
 
 #========Menu==============
@@ -137,16 +137,22 @@ while inicio_do_jogo:
     maca_y = random.randint(0,320)
 
     # loop principal
+    contador = 0
     while jogo:
         janela.blit(fundo_jogo,(0,0)) 
-        pygame.display.update()
-
+        palavra2.mostra(340, 0)
+        contador = str(contador)
+        cont = textos(contador,branco,27)
+        cont.mostra(445,0)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 jogo = False
 
         janela.blit(maca_pequena, (maca_x, maca_y))
         pygame.display.update()
+        contador = int(contador) + 1
+        if contador == 1000:
+            contador = 100
 
 
     pygame.display.update()
