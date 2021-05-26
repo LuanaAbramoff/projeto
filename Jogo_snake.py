@@ -43,7 +43,6 @@ class Cobra:
         self.cobra_xy = []
         self.cobra_comprimento = 1
         self.cobra_inicial = []
-        self.pontuacao = 0
         self.fim_do_jogo = False
     def movimentos_possiveis(self):
         self.cobra_inicial = [self.x,self.y]
@@ -75,8 +74,8 @@ class Maca:
     def __init__(self):
         self.pos_x = random.randint(0,(largura-tamanho)/10)*10
         self.pos_y = random.randint(0,(altura-tamanho)/10)*10
-        self.w = 13
-        self.h = 13
+        self.w = 10
+        self.h = 10
         self.img = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
         
@@ -105,7 +104,6 @@ cobra = Cobra()
 #========Menu==============
 while inicio_do_jogo:
     janela.blit(menu,(0,0)) 
-    
     # escolha da dificuldade 
     pygame.draw.rect(janela, cinzaClaro, [23, 160, 139, 31])
     pygame.draw.rect(janela, preto, [25, 162, 135, 27])
@@ -131,7 +129,7 @@ while inicio_do_jogo:
                 fps.tick(10)
                 jogo = True
             elif event.key == pygame.K_2:
-                fps.tick(20)
+                fps.tick(15)
                 jogo = True
             elif event.key == pygame.K_3:
                 fps.tick(35)
@@ -148,6 +146,8 @@ while inicio_do_jogo:
         contador = str(contador)
         cont = textos(contador,branco,27)
         cont.mostra(445,0)
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 jogo = False
@@ -166,62 +166,62 @@ while inicio_do_jogo:
                     cobra.velocidade_em_x = 0
                     cobra.velocidade_em_y = tamanho
                 
-            cobra.x += cobra.velocidade_em_x
-            cobra.y += cobra.velocidade_em_y
+        cobra.x += cobra.velocidade_em_x
+        cobra.y += cobra.velocidade_em_y
 
-            maca.convercao
-            cobra.resto()
-            cobra.imagem_cobra()
-            cobra.morte()
-            janela.blit(maca.convercao, (maca.pos_x,maca.pos_y))
+        maca.convercao
+        cobra.resto()
+        cobra.imagem_cobra()
+        cobra.morte()
+        janela.blit(maca.convercao, (maca.pos_x,maca.pos_y))
+        pygame.display.update()
+
+        if cobra.x == maca.pos_x and cobra.y == maca.pos_y:
+            maca.pos_x = random.randint(0,(largura-tamanho)/10)*10
+            maca.pos_y = random.randint(0,(altura-tamanho)/10)*10
+            cobra.cobra_comprimento += 1
+            contador = int(contador) + 1 
+
+        while fim_do_jogo:
+            janela.fill(preto)
+            palavra.mostra(95,130)
+            palavra2.mostra(95,160)
+            cont.mostra(200,160)
+            palavra3.mostra(175,210)
+            palavra4.mostra(5,210)
             pygame.display.update()
-
-            if cobra.x == maca.pos_x and cobra.y == maca.pos_y:
-                maca.pos_x = random.randint(0,(largura-tamanho)/10)*10
-                maca.pos_y = random.randint(0,(altura-tamanho)/10)*10
-                cobra.cobra_comprimento += 1
-                contador = int(contador) + 1 
-
-            while fim_do_jogo:
-                janela.fill(preto)
-                palavra.mostra(95,130)
-                palavra2.mostra(95,160)
-                cont.mostra(200,160)
-                palavra3.mostra(175,210)
-                palavra4.mostra(5,210)
-                pygame.display.update()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        jogo = False
-                        fim_do_jogo = False
-                        inicio_do_jogo = False
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE:
-                            fim_do_jogo=False
-                            jogo=True
-                            cobra.reinicio()
-                            pygame.mixer.music.load(musica_inicio)
-                            pygame.mixer.music.set_volume(0.5)
-                            pygame.mixer.music.play(-1)   
-                         
-                if cobra.x + tamanho> largura:
-                    fim_do_jogo=True
-                if cobra.x < 0:
-                    fim_do_jogo=True
-                if cobra.y + tamanho> altura:
-                    fim_do_jogo=True
-                if cobra.y < 0:
-                    fim_do_jogo=True
-                if cobra.fim_do_jogo == True:
-                    fim_do_jogo=True
-                if fim_do_jogo == True:
-                    # música do fim de jogo
-                    pygame.mixer.music.pause()
-                    pygame.mixer.music.load(musica_final)
-                    pygame.mixer.music.set_volume(0.5) 
-                    pygame.mixer.music.play(1)
-                                
-                pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    jogo = False
+                    fim_do_jogo = False
+                    inicio_do_jogo = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        fim_do_jogo=False
+                        jogo=True
+                        cobra.reinicio()
+                        pygame.mixer.music.load(musica_inicio)
+                        pygame.mixer.music.set_volume(0.5)
+                        pygame.mixer.music.play(-1)   
+                        
+        if cobra.x + tamanho> largura:
+            fim_do_jogo=True
+        if cobra.x < 0:
+            fim_do_jogo=True
+        if cobra.y + tamanho> altura:
+            fim_do_jogo=True
+        if cobra.y < 0:
+            fim_do_jogo=True
+        if cobra.fim_do_jogo == True:
+            fim_do_jogo=True
+        if fim_do_jogo == True:
+            # música do fim de jogo
+            pygame.mixer.music.pause()
+            pygame.mixer.music.load(musica_final)
+            pygame.mixer.music.set_volume(0.5) 
+            pygame.mixer.music.play(1)
+                            
+        pygame.display.update()
 
         
     pygame.display.update()
