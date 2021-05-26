@@ -101,13 +101,13 @@ palavra2 = textos("Pontuação: " , branco, 27)
 palavra3 = textos("aperte Q",branco,27)
 palavra4 = textos("Deseja continuar?",branco,27)
 palavra5 = textos("Snake Retrô",branco,35)
-palavra6 = textos("Escolha o nível de dificuldade do jogo",vermelho,27)
+palavra6 = textos("Escolha o nível de dificuldade do jogo:",vermelho,27)
 
 
 while inicio_do_jogo:
     janela.blit(fundo_jogo,(0,0)) 
     palavra5.mostra(0,0)
-    palavra6.mostra(80,30)
+    palavra6.mostra(70,130)
     
     # escolha da dificuldade 
     pygame.draw.rect(janela, cinzaClaro, [23, 160, 139, 31])
