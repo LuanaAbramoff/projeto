@@ -43,8 +43,7 @@ class Maca:
         self.img = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))  
 
-    def imagem_maca(self):
-        pygame.draw.rect(janela, vermelho, [self.pos_x, self.pos_y, tamanho, tamanho])    
+        
         
         
 
@@ -174,8 +173,8 @@ while inicio_do_jogo:
             #if event.type == pygame.QUIT:
                 #jogo = False
 
-            #janela.blit(maca_pequena, (maca_x, maca_y))
-            #pygame.display.update()
+        janela.blit(maca.convercao, (maca.pos_x, maca.pos_y))
+        pygame.display.update()
             #contador = int(contador) + 1
             #if contador == 1000:
                 #contador = 100
@@ -204,18 +203,18 @@ while inicio_do_jogo:
             cobra.y += cobra.velocidade_em_y
 
 
-        maca.imagem_maca()
+        maca=Maca()
         cobra.resto()
         cobra.imagem_cobra()
         cobra.morte() 
 
 
-        if cobra.x == maca.pos_x and maca.pos_y == maca.pos_y:
-                    cobra.x = random.randint(0,(largura-tamanho)/10)*10
-                    maca.pos_y = random.randint(0,(altura-tamanho)/10)*10
-                    cobra.cobra_comprimento += 1
-                    cobra.pontos += 1
-                    palavra2.contador_de_pontos_atualizado(cobra.pontos)
+        #if cobra.x == maca.pos_x and maca.pos_y == maca.pos_y:
+                    #cobra.x = random.randint(0,(largura-tamanho)/10)*10
+                   # maca.pos_y = random.randint(0,(altura-tamanho)/10)*10
+                   # cobra.cobra_comprimento += 1
+                   # cobra.pontos += 1
+                   # palavra2.contador_de_pontos_atualizado(cobra.pontos)
         pygame.display.update()
        
 
