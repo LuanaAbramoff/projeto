@@ -45,8 +45,8 @@ maca_y = random.randint(0,320)
 
 class Cobra:
     def __init__(self):
-        self.x = randint(0,(largura-tamanho)/10)*10
-        self.y = randint(0,(altura-tamanho)/10)*10
+        self.x = random.randint(0,(largura-tamanho)/10)*10
+        self.y = random.randint(0,(altura-tamanho)/10)*10
         self.velocidade_em_x = 0
         self.velocidade_em_y = 0
         self.cobra_xy = []
@@ -70,8 +70,8 @@ class Cobra:
             self.fimdejogo = True
 
     def reinicio(self):
-            self.x = randint(0,(largura-tamanho)/10)*10
-            self.y = randint(0,(altura-tamanho)/10)*10
+            self.x = random.randint(0,(largura-tamanho)/10)*10
+            self.y = random.randint(0,(altura-tamanho)/10)*10
             self.vel_x = 0
             self.vel_y = 0
             self.cobra_xy = []
