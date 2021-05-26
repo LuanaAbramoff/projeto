@@ -24,8 +24,6 @@ fps = pygame.time.Clock()
 janela = pygame.display.set_mode((largura,altura))
 pygame.display.set_caption('Snake Retrô')
 
-
-
 # Musicas e imagens 
 musica_inicio =os.path.join('assets','musicas','musica_inicial.mp3')
 musica_final=os.path.join('assets','musicas', 'musica_fim.mp3') 
@@ -38,7 +36,7 @@ fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 #maça aparecendo em lugar aleatorio 
 maca_w= 15
 maca_h= 15
-maca= pygame.image.load('assets/Imagens/Untitled-1.png').convert()
+maca= pygame.image.load('assets/Imagens/maca_Mine.png').convert()
 maca_pequena =pygame.transform.scale(maca, (maca_w, maca_h))
 maca_x = random.randint(0,480)
 maca_y = random.randint(0,320)
@@ -103,7 +101,7 @@ palavra4 = textos("Deseja continuar?",branco,27)
 palavra5 = textos("Snake Retrô",branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:",vermelho,27)
 
-
+#========Menu==============
 while inicio_do_jogo:
     janela.blit(fundo_jogo,(0,0)) 
     palavra5.mostra(0,0)
@@ -138,6 +136,7 @@ while inicio_do_jogo:
             elif event.key == pygame.K_3:
                 fps.tick(35)
                 jogo=True    
+
     # while do jogo em si
 
         while fim_do_jogo:
