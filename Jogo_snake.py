@@ -91,7 +91,7 @@ jogo = False
 fim_do_jogo = False
 inicio_do_jogo = True
 
-palavra = textos("Game Over", vermelho, 37)
+palavra = textos("Game Over", vermelho, 80)
 palavra2 = textos("Pontuação: " , branco, 27)
 palavra3 = textos("aperte Espaço", branco,27)
 palavra4 = textos("Deseja continuar?", branco,27)
@@ -184,8 +184,8 @@ while inicio_do_jogo:
 
         while fim_do_jogo:
             janela.fill(preto)
-            palavra.mostra(95,130)
-            palavra2.mostra(95,160)
+            palavra.mostra(100,0)
+            palavra2.mostra(95,160) #pontuação
             cont.mostra(200,160)
             palavra3.mostra(175,210)
             palavra4.mostra(5,210)
