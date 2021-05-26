@@ -33,10 +33,10 @@ fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 
 #maça aparecendo em lugar aleatorio 
-maca_w= 15
-maca_h= 15
-maca= pygame.image.load('assets/Imagens/maca_Mine.png').convert()
-maca_pequena =pygame.transform.scale(maca, (maca_w, maca_h))
+maca_w = 15
+maca_h = 15
+maca = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
+maca_pequena = pygame.transform.scale(maca, (maca_w, maca_h))
 maca_x = random.randint(0,480)
 maca_y = random.randint(0,320)
 
@@ -86,9 +86,8 @@ class textos:
     def mostra(self, x, y):
             janela.blit(self.texto, [x, y])
 
-
-
 # encerramento do jogo
+
 jogo = False
 fim_do_jogo = False
 inicio_do_jogo = True
@@ -127,15 +126,23 @@ while inicio_do_jogo:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 fps.tick(10)
-                jogo=True
+                jogo = True
             elif event.key == pygame.K_2:
                 fps.tick(20)
-                jogo=True
+                jogo = True
             elif event.key == pygame.K_3:
                 fps.tick(35)
-                jogo=True    
+                jogo = True    
 
-    # while do jogo em si
+    # loop principal
+    while jogo:
+        janela.blit(fundo_jogo,(0,0)) 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                jogo = False
+
+
+
 
         while fim_do_jogo:
             janela.fill(preto)
@@ -165,7 +172,5 @@ while inicio_do_jogo:
             pygame.mixer.music.play(1)        
 
     pygame.display.update()
-
-
 
 pygame.quit()
