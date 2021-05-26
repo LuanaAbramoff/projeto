@@ -119,7 +119,7 @@ while inicio_do_jogo:
     pygame.draw.rect(janela, preto, [325, 162, 135, 27])
     dificil = textos("Díficil(3)", vermelho, 30)
     dificil.mostra(353, 166)
-
+    pygame.display.update()
     #Escolha da dificuldade do jogo
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -224,6 +224,6 @@ while inicio_do_jogo:
         pygame.display.update()
 
         
-    pygame.display.update()
+
 
 pygame.quit()
