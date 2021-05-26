@@ -33,12 +33,6 @@ fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 
 #maça aparecendo em lugar aleatorio 
-maca_w = 15
-maca_h = 15
-maca = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
-maca_pequena = pygame.transform.scale(maca, (maca_w, maca_h))
-maca_x = random.randint(0,480)
-maca_y = random.randint(0,320)
 
 class Cobra:
     def __init__(self):
@@ -99,6 +93,7 @@ palavra4 = textos("Deseja continuar?",branco,27)
 palavra5 = textos("Snake Retrô",branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:",vermelho,27)
 
+
 #========Menu==============
 while inicio_do_jogo:
     janela.blit(menu,(0,0)) 
@@ -132,44 +127,27 @@ while inicio_do_jogo:
                 jogo = True
             elif event.key == pygame.K_3:
                 fps.tick(35)
-                jogo = True    
+                jogo = True  
+    #==== Define Maça =====  
+    maca_w = 18
+    maca_h = 18
+    maca = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
+    maca_pequena = pygame.transform.scale(maca, (maca_w, maca_h))
+    maca_x = random.randint(0,480)
+    maca_y = random.randint(0,320)
 
     # loop principal
     while jogo:
         janela.blit(fundo_jogo,(0,0)) 
+        pygame.display.update()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 jogo = False
 
+        janela.blit(maca_pequena, (maca_x, maca_y))
+        pygame.display.update()
 
-
-
-        while fim_do_jogo:
-            janela.fill(preto)
-            palavra.mostra(95,130)
-            palavra3.mostra(175,210)
-            palavra4.mostra(5,210)
-            pygame.display.update()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    jogo = False
-                    fim_do_jogo = False
-                    inicio_do_jogo = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
-                        fim_do_jogo=False
-                        jogo=True
-                        
-                        #falta atualizar os pontos
-                        pygame.mixer.music.load(musica_inicio)
-                        pygame.mixer.music.set_volume(0.5)
-                        pygame.mixer.music.play(-1)
-        if fim_do_jogo == True:
-        # musica do final 
-            pygame.mixer.music.pause()
-            pygame.mixer.music.load(musica_final)
-            pygame.mixer.music.set_volume(0.5) 
-            pygame.mixer.music.play(1)        
 
     pygame.display.update()
 
