@@ -1,5 +1,4 @@
 #=================== Inicialização ===============
-#from Classes.maca import macav
 from Classes.Cobra import Cobra
 import pygame
 import random
@@ -54,7 +53,6 @@ class textos:
 
     def mostra(self, x, y):
             janela.blit(self.texto, [x, y])
-
 
 
 game = True
