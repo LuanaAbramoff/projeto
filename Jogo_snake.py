@@ -55,18 +55,6 @@ class textos:
             janela.blit(self.texto, [x, y])
 
 
-game = True
-
-while game:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game = False
-
-    janela.fill((0,0,0))
-    janela.blit(fundo_jogo, (0, 0))
-    janela.blit(maca_pequena, (maca_x, maca_y))
-    pygame.display.update()
-
 
 # encerramento do jogo
 jogo = False
