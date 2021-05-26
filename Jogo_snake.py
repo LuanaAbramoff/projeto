@@ -3,7 +3,6 @@ import pygame
 import random
 import os
 
-
 pygame.init()
 
 # Definindo medidas
@@ -33,7 +32,7 @@ pygame.mixer.music.load(musica_inicio)
 pygame.mixer.music.set_volume(0.4)
 pygame.mixer.music.play(-1)
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
-
+menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 
 #maça aparecendo em lugar aleatorio 
 maca_w= 15
@@ -105,8 +104,7 @@ palavra6 = textos("Escolha o nível de dificuldade do jogo:",vermelho,27)
 
 
 while inicio_do_jogo:
-    janela.blit(fundo_jogo,(0,0)) 
-    palavra5.mostra(0,0)
+    janela.blit(menu,(0,0)) 
     palavra6.mostra(70,130)
     
     # escolha da dificuldade 
