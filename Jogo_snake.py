@@ -76,7 +76,7 @@ fim_do_jogo = False
 inicio_do_jogo = True
 
 cob = Cobra()
-#mac = macav()
+#mac = maca()
 palavra = textos("Game Over", vermelho, 37)
 palavra2 = textos("Pontuação: " , branco, 27)
 palavra3 = textos("aperte Q",branco,27)
