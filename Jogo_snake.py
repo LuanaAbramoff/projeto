@@ -77,20 +77,20 @@ while inicio_do_jogo:
     palavra6.mostra(80,30)
     
     # escolha da dificuldade 
-    pygame.draw.rect(janela, cinzaClaro, [23, 138, 139, 31])
-    pygame.draw.rect(janela, preto, [25, 140, 135, 27])
+    pygame.draw.rect(janela, cinzaClaro, [43, 118, 139, 31])
+    pygame.draw.rect(janela, preto, [45, 120, 135, 27])
     facil = textos("fácil(1)", branco, 30)
-    facil.mostra(60, 145)
+    facil.mostra(80, 125)
 
-    pygame.draw.rect(janela, cinzaClaro, [173, 138, 139, 31])
-    pygame.draw.rect(janela, preto, [175, 140, 135, 27])
+    pygame.draw.rect(janela, cinzaClaro, [43, 168, 139, 31])
+    pygame.draw.rect(janela, preto, [45, 170, 135, 27])
     medio = textos("médio(2)", branco, 30)
-    medio.mostra(200, 145)
+    medio.mostra(73, 175)
 
-    pygame.draw.rect(janela, cinzaClaro, [323, 138, 139, 31])
-    pygame.draw.rect(janela, preto, [325, 140, 135, 27])
+    pygame.draw.rect(janela, cinzaClaro, [43, 218, 139, 31])
+    pygame.draw.rect(janela, preto, [45, 220, 135, 27])
     dificil = textos("díficil(3)", vermelho, 30)
-    dificil.mostra(350, 145)
+    dificil.mostra(74, 225)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
