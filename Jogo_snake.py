@@ -71,6 +71,16 @@ class Cobra:
             self.pontos = 0
             self.fimdejogo = False 
 
+#==== Define Maça ===== 
+class Maca:
+    def __init__(self):
+        self.pos_x = random.randint(0,(largura-tamanho)/10)*10
+        self.pos_y = random.randint(0,(altura-tamanho)/10)*10
+        self.w = 18
+        self.h = 18
+        self.img = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
+        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
+        
 
 class textos:
     def __init__(self, msg, cor, tam):
@@ -94,10 +104,12 @@ palavra5 = textos("Snake Retrô", branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
 
 
+maca = Maca()
+
+
 #========Menu==============
 while inicio_do_jogo:
     janela.blit(menu,(0,0)) 
-    palavra6.mostra(70,130)
     
     # escolha da dificuldade 
     pygame.draw.rect(janela, cinzaClaro, [23, 160, 139, 31])
@@ -115,6 +127,7 @@ while inicio_do_jogo:
     dificil = textos("Díficil(3)", vermelho, 30)
     dificil.mostra(353, 166)
 
+    #Escolha da dificuldade do jogo
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             inicio_do_jogo=False
@@ -127,14 +140,8 @@ while inicio_do_jogo:
                 jogo = True
             elif event.key == pygame.K_3:
                 fps.tick(35)
-                jogo = True  
-    #==== Define Maça =====  
-    maca_w = 18
-    maca_h = 18
-    maca = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
-    maca_pequena = pygame.transform.scale(maca, (maca_w, maca_h))
-    maca_x = random.randint(0,480)
-    maca_y = random.randint(0,320)
+                jogo = True       
+    
 
     # loop principal
     contador = 0
@@ -147,9 +154,11 @@ while inicio_do_jogo:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 jogo = False
+                inicio_do_jogo = False
 
-        janela.blit(maca_pequena, (maca_x, maca_y))
+        janela.blit(maca.convercao, (maca.pos_x,maca.pos_y))
         pygame.display.update()
+
         contador = int(contador) + 1
         if contador == 1000:
             contador = 100
