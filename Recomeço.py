@@ -55,6 +55,14 @@ class Maca:
         self.img = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
         
+class Maca_dourada:
+    def __init__(self):
+        self.pos2_x = random.randint(0,(largura-tamanho)/10)*10
+        self.pos2_y = random.randint(0,(altura-tamanho)/10)*10
+        self.w = 14
+        self.h = 14
+        self.img = pygame.image.load('assets/Imagens/gold_mine.png').convert()
+        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
 
 
 class Cobra:
@@ -174,6 +182,7 @@ palavra2 = textos("Pontuação: " , branco, 27)
 lis_cobra = []
 cobra = Cobra()
 apple = Maca()
+goldapple= Maca_dourada()
 contador = 0
 morte = False
 while game:
@@ -201,7 +210,9 @@ while game:
 
     cobra.imagem()
     apple.convercao
+    goldapple.convercao
     maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
+    maca_dourada= tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
     cobrinha = cobra.img
 
     palavra2.mostra(340,0)
