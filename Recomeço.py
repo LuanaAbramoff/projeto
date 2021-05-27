@@ -244,6 +244,10 @@ while game:
     
     pygame.display.update()
 
+pygame.mixer.music.pause()
+pygame.mixer.music.load(musica_final)
+pygame.mixer.music.set_volume(0.1) 
+pygame.mixer.music.play(1)
 while morte:
     tela.fill(preto)
     palavra.mostra(110,0)
@@ -251,10 +255,7 @@ while morte:
     cont.mostra(200,160)
     palavra3.mostra(175,210)
     palavra4.mostra(5,210)
-    pygame.mixer.music.pause()
-    pygame.mixer.music.load(musica_final)
-    pygame.mixer.music.set_volume(0.1) 
-    pygame.mixer.music.play(1)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             morte = False
