@@ -51,56 +51,66 @@ palavra4 = textos("Deseja continuar?", branco,27)
 palavra5 = textos("Snake Retrô", branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
 
+class Cobra(pygame.sprite.Sprite):
+    def __init__(self):
+        self.x = random.randint(0,largura)
+        self.y = random.randint(0,altura)
+    def desenhar(self):
+        self.cobra = pygame.Rect(self.x,self.y,10,10)
+        self.img = pygame.draw.rect(fundo_jogo,vermelho, self.cobra)
 
-all_sprites = pygame.sprite.Group()
+
+
+
+# all_sprites = pygame.sprite.Group()
 cobra = Cobra()
-all_sprites.add(cobra)
+# all_sprites.add(cobra)
 
-estado = 'inicio'
+
 #========Menu==============
 while inicio_do_jogo:
     clock.tick(fps)
-    if estado == 'inicio':
 
-        janela.blit(menu,(0,0)) 
-        # escolha da dificuldade 
-        pygame.draw.rect(janela, cinzaClaro, [23, 160, 139, 31])
-        pygame.draw.rect(janela, preto, [25, 162, 135, 27])
-        facil = textos("Fácil(1)", branco, 30)
-        facil.mostra(60, 166)
+    janela.blit(menu,(0,0)) 
+    # escolha da dificuldade 
+    pygame.draw.rect(janela, cinzaClaro, [23, 160, 139, 31])
+    pygame.draw.rect(janela, preto, [25, 162, 135, 27])
+    facil = textos("Fácil(1)", branco, 30)
+    facil.mostra(60, 166)
 
-        pygame.draw.rect(janela, cinzaClaro, [173, 160, 139, 31])
-        pygame.draw.rect(janela, preto, [175, 162, 135, 27])
-        medio = textos("Médio(2)", branco, 30)
-        medio.mostra(199, 166)
+    pygame.draw.rect(janela, cinzaClaro, [173, 160, 139, 31])
+    pygame.draw.rect(janela, preto, [175, 162, 135, 27])
+    medio = textos("Médio(2)", branco, 30)
+    medio.mostra(199, 166)
 
-        pygame.draw.rect(janela, cinzaClaro, [323, 160, 139, 31])
-        pygame.draw.rect(janela, preto, [325, 162, 135, 27])
-        dificil = textos("Díficil(3)", vermelho, 30)
-        dificil.mostra(353, 166)
-        pygame.display.update()
-        #Escolha da dificuldade do jogo
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                inicio_do_jogo=False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
-                    fps = 10
-                    jogo = True
-                elif event.key == pygame.K_2:
-                    fps = 15
-                    jogo = True
-                elif event.key == pygame.K_3:
-                    fps = 35
-                    jogo = True       
-    else:
-        # loop principal
-        contador = 0
-        while jogo:
-            janela.blit(fundo_jogo,(0,0)) 
-            palavra2.mostra(340, 0)
-            contador = str(contador)
-            cont = textos(contador,branco,27)
-            cont.mostra(445,0)
+    pygame.draw.rect(janela, cinzaClaro, [323, 160, 139, 31])
+    pygame.draw.rect(janela, preto, [325, 162, 135, 27])
+    dificil = textos("Díficil(3)", vermelho, 30)
+    dificil.mostra(353, 166)
+    pygame.display.update()
+    #Escolha da dificuldade do jogo
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            inicio_do_jogo=False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_1:
+                fps = 10
+                jogo = True
+            elif event.key == pygame.K_2:
+                fps = 15
+                jogo = True
+            elif event.key == pygame.K_3:
+                fps = 35
+                jogo = True       
+
+    # loop principal
+    contador = 0
+    while jogo:
+        janela.blit(fundo_jogo,(0,0)) 
+        palavra2.mostra(340, 0)
+        contador = str(contador)
+        cont = textos(contador,branco,27)
+        cont.mostra(445,0)
+            
 
 pygame.quit()
