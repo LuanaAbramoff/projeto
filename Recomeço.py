@@ -185,6 +185,9 @@ apple = Maca()
 goldapple= Maca_dourada()
 contador = 0
 morte = False
+numerox=0
+goldapple.convercao
+gold_maca = tela.blit(apple.convercao, (600,600))
 while game:
     clock.tick(fps)
     tela.fill(preto)
@@ -210,9 +213,7 @@ while game:
 
     cobra.imagem()
     apple.convercao
-    goldapple.convercao
     maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
-    maca_dourada= tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
     cobrinha = cobra.img
 
     palavra2.mostra(340,0)
@@ -225,6 +226,7 @@ while game:
         apple.pos_y = random.randint(0,(altura-tamanho)/10)*10
         tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
         contador += 1
+        numerox= random.randint(0,10)
         mus = pygame.mixer.Sound(mus_pontuacao)
         pygame.mixer.music.set_volume(0.5)
         mus.play()
@@ -236,7 +238,27 @@ while game:
         lis_cobra.append(lis_cbc)
         comprimento(lis_cobra)
         cobra.comp_inicial()
-    
+    if numerox == 1:
+        goldapple.convercao
+        gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
+        if cobrinha.colliderect(gold_maca):
+            goldapple.convercao
+            goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
+            goldapple.pos2_y = random.randint(0,(altura-tamanho)/10)*10
+            contador += 10
+            numerox= 0
+            mus = pygame.mixer.Sound(mus_pontuacao)
+            pygame.mixer.music.set_volume(0.5)
+            mus.play()
+
+            x = cobra.x
+            y = cobra.y
+            lis_cbc.append(x)
+            lis_cbc.append(y)    
+            lis_cobra.append(lis_cbc)
+            comprimento(lis_cobra)
+            cobra.comp_inicial()
+
     x = cobra.x
     y = cobra.y
     lis_cbc = []
