@@ -283,11 +283,11 @@ pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.play(1)
 while morte:
     tela.fill(preto)
-    palavra.mostra(110,0)
-    palavra2.mostra(115,160) #pontuação
-    cont.mostra(200,160)
-    palavra3.mostra(175,210)
-    palavra4.mostra(5,210)
+    palavra.mostra(100,0)
+    palavra2.mostra(135,160) #pontuação
+    cont.mostra(240,160)
+    palavra3.mostra(220 ,210)
+    palavra4.mostra(55,210)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
