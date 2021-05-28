@@ -1,3 +1,4 @@
+#======== Inicialização =======
 import pygame
 import random
 import os
@@ -22,7 +23,7 @@ verde_escuro = (0,128,0)
 
 
 
-
+# Tela e nome do jogo
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Snake Retrô')
 
@@ -36,16 +37,13 @@ pygame.mixer.music.play(-1)
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 mus_pontuacao = os.path.join('assets','musicas','pontuação.wav')
 
+#definindo FPS inicial 
 clock = pygame.time.Clock()
 fps = 15
 
 
 
-
-def comprimento(lis_cobra):
-    for XeY in lis_cobra:
-        pygame.draw.rect(tela, verde_escuro, (XeY[0], XeY[1], tamanho, tamanho))
-
+# Classe para criar e mudar a posição da maçã(VERMELHA)
 class Maca:
     def __init__(self):
         self.pos_x = random.randint(0,(largura-tamanho)/10)*10
@@ -55,6 +53,7 @@ class Maca:
         self.img = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
         
+# Classe para criar e mudar a posição da maçã(DOURADA)
 class Maca_dourada:
     def __init__(self):
         self.pos2_x = random.randint(0,(largura-tamanho)/10)*10
@@ -64,7 +63,7 @@ class Maca_dourada:
         self.img = pygame.image.load('assets/Imagens/gold_mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
 
-
+# Classe da criação e movimentação da cobra
 class Cobra:
     def __init__(self):
         self.x = random.randint(0,largura - tamanho)
@@ -122,10 +121,7 @@ class Cobra:
     def comp_inicial(self):
         self.compr_inicial += 1
 
-        
-
-
-        
+# Classe para desenhar textos na tela
 class textos:
     def __init__(self, msg, cor, tam):
             self.font = pygame.font.SysFont(None, tam)
@@ -133,6 +129,12 @@ class textos:
     def mostra(self, x, y):
             tela.blit(self.texto, [x, y])
 
+# função para aumentar o corpo da cobra
+def comprimento(lis_cobra):
+    for XeY in lis_cobra:
+        pygame.draw.rect(tela, verde_escuro, (XeY[0], XeY[1], tamanho, tamanho))
+
+# Palavras usadas durante o jogo
 palavra = textos("Game Over", vermelho, 80)
 palavra2 = textos("Pontuação: " , branco, 27)
 palavra3 = textos("Aperte Espaço", branco,27)
@@ -140,20 +142,23 @@ palavra4 = textos("Deseja continuar?", branco,27)
 palavra5 = textos("Snake Retrô", branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
 
+# Looping menu inicial
 inicio_do_jogo = True
 while inicio_do_jogo:
+    # Imagem do fundo do jogo
     tela.blit(menu,(0,0)) 
-    # escolha da dificuldade 
+    # escolha da dificuldade (altera o FPS do game)
+    # FPS = 10
     pygame.draw.rect(tela, cinzaClaro, [23, 160, 139, 31])
     pygame.draw.rect(tela, preto, [25, 162, 135, 27])
     facil = textos("Fácil(1)", branco, 30)
     facil.mostra(60, 166)
-
+    #FPS = 15
     pygame.draw.rect(tela, cinzaClaro, [173, 160, 139, 31])
     pygame.draw.rect(tela, preto, [175, 162, 135, 27])
     medio = textos("Médio(2)", branco, 30)
     medio.mostra(199, 166)
-
+    #FPS = 30
     pygame.draw.rect(tela, cinzaClaro, [323, 160, 139, 31])
     pygame.draw.rect(tela, preto, [325, 162, 135, 27])
     dificil = textos("Díficil(3)", vermelho, 30)
@@ -177,8 +182,7 @@ while inicio_do_jogo:
                 game = True
                 inicio_do_jogo = False
 
-
-palavra2 = textos("Pontuação: " , branco, 27)
+# Definindo variavéis para desenvolvimento do jogo
 lis_cobra = []
 cobra = Cobra()
 apple = Maca()
@@ -188,6 +192,7 @@ morte = False
 numerox=0
 goldapple.convercao
 gold_maca = tela.blit(apple.convercao, (600,600))
+# Looping principal
 while game:
     clock.tick(fps)
     tela.fill(preto)
@@ -196,6 +201,7 @@ while game:
         if event.type == QUIT:
             game = False
 
+        #movimentação da cobra escolhida pelo jogador
         if event.type == KEYDOWN:
             if event.key == K_a or event.key == K_LEFT:
                 cobra.movimento_a()
@@ -209,17 +215,22 @@ while game:
             if event.key == K_w or event.key == K_UP:
                 cobra.movimento_w()
 
+    #Prolongação da movimentação
     cobra.mov()
 
     cobra.imagem()
+
+    # Criação e posição aleatória da maçã
     apple.convercao
     maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
     cobrinha = cobra.img
 
+    #Mostra a pontuação e o contador no jogo principal
     palavra2.mostra(340,0)
     cont = textos(str(contador), branco, 27)
     cont.mostra(445,0)
 
+    # Caso a cobra colide com a maçã 
     if cobrinha.colliderect(maca):
         apple.convercao
         apple.pos_x = random.randint(0,(largura-tamanho)/10)*10
@@ -238,9 +249,11 @@ while game:
         lis_cobra.append(lis_cbc)
         comprimento(lis_cobra)
         cobra.comp_inicial()
+
     if numerox == 1:
         goldapple.convercao
         gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
+        # Colide com a maçã dourada
         if cobrinha.colliderect(gold_maca):
             goldapple.convercao
             goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
@@ -266,10 +279,12 @@ while game:
     lis_cbc.append(y)
     lis_cobra.append(lis_cbc)
 
+    # Se a cobra colidir com ela msm, o jogo acaba 
     if lis_cobra.count(lis_cbc) > 1:
         game = False
         morte = True
     
+    # Apaga o Primeiro termo da lista do corpo da cobra
     if len(lis_cobra) > cobra.compr_inicial:
         del lis_cobra[0]
         
@@ -281,13 +296,15 @@ pygame.mixer.music.pause()
 pygame.mixer.music.load(musica_final)
 pygame.mixer.music.set_volume(0.1) 
 pygame.mixer.music.play(1)
+
+# Menu de Game Over
 while morte:
-    tela.fill(preto)
-    palavra.mostra(100,0)
+    tela.fill(preto) #tela fundo preto
+    palavra.mostra(100,0) #Game over
     palavra2.mostra(135,160) #pontuação
-    cont.mostra(240,160)
-    palavra3.mostra(220 ,210)
-    palavra4.mostra(55,210)
+    cont.mostra(240,160) # contador
+    palavra3.mostra(220 ,210) #Aperte espaço para jogar
+    palavra4.mostra(55,210) # Quer jogar novamente?
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
