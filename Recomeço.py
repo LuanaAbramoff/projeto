@@ -64,6 +64,14 @@ class Maca_dourada:
         self.img = pygame.image.load('assets/Imagens/gold_mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
 
+class Maca_azul:
+    def __init__(self):
+        self.pos3_x = random.randint(0,(largura-tamanho)/10)*10
+        self.pos3_y = random.randint(0,(altura-tamanho)/10)*10
+        self.w = 14
+        self.h = 14
+        self.img = pygame.image.load('assets/Imagens/azul_mine.png').convert()
+        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
 
 class Cobra:
     def __init__(self):
@@ -121,11 +129,7 @@ class Cobra:
         
     def comp_inicial(self):
         self.compr_inicial += 1
-
-        
-
-
-        
+       
 class textos:
     def __init__(self, msg, cor, tam):
             self.font = pygame.font.SysFont(None, tam)
@@ -183,11 +187,14 @@ lis_cobra = []
 cobra = Cobra()
 apple = Maca()
 goldapple= Maca_dourada()
+blueapple= Maca_azul()
 contador = 0
 morte = False
 numerox=0
 goldapple.convercao
-gold_maca = tela.blit(apple.convercao, (600,600))
+gold_maca = tela.blit(goldapple.convercao, (600,600))
+blueapple.convercao
+azul_maca = tela.blit(apple.convercao, (600,600))
 while game:
     clock.tick(fps)
     tela.fill(preto)
@@ -238,7 +245,7 @@ while game:
         lis_cobra.append(lis_cbc)
         comprimento(lis_cobra)
         cobra.comp_inicial()
-    if numerox == 1:
+    if numerox == 10:
         goldapple.convercao
         gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
         if cobrinha.colliderect(gold_maca):
@@ -258,7 +265,26 @@ while game:
             lis_cobra.append(lis_cbc)
             comprimento(lis_cobra)
             cobra.comp_inicial()
+    elif numerox == 9:
+        blueapple.convercao
+        azul_maca= tela.blit(blueapple.convercao,(blueapple.pos3_x,blueapple.pos3_y))
+        if cobrinha.colliderect(azul_maca):
+            blueapple.convercao
+            blueapple.pos3_x = random.randint(0,(largura-tamanho)/10)*10
+            blueapple.pos3_y = random.randint(0,(altura-tamanho)/10)*10
+            contador += contador
+            numerox= 0
+            mus = pygame.mixer.Sound(mus_pontuacao)
+            pygame.mixer.music.set_volume(0.5)
+            mus.play()
 
+            x = cobra.x
+            y = cobra.y
+            lis_cbc.append(x)
+            lis_cbc.append(y)    
+            lis_cobra.append(lis_cbc)
+            comprimento(lis_cobra)
+            cobra.comp_inicial()
     x = cobra.x
     y = cobra.y
     lis_cbc = []
@@ -284,7 +310,7 @@ pygame.mixer.music.play(1)
 while morte:
     tela.fill(preto)
     palavra.mostra(110,0)
-    palavra2.mostra(115,160) #pontuação
+    palavra2.mostra(80,160) #pontuação
     cont.mostra(200,160)
     palavra3.mostra(175,210)
     palavra4.mostra(5,210)
