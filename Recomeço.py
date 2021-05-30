@@ -193,8 +193,6 @@ morte = False
 numerox=0
 goldapple.convercao
 gold_maca = tela.blit(goldapple.convercao, (600,600))
-blueapple.convercao
-azul_maca = tela.blit(apple.convercao, (600,600))
 while game:
     clock.tick(fps)
     tela.fill(preto)
@@ -253,26 +251,6 @@ while game:
             goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
             goldapple.pos2_y = random.randint(0,(altura-tamanho)/10)*10
             contador += 10
-            numerox= 0
-            mus = pygame.mixer.Sound(mus_pontuacao)
-            pygame.mixer.music.set_volume(0.5)
-            mus.play()
-
-            x = cobra.x
-            y = cobra.y
-            lis_cbc.append(x)
-            lis_cbc.append(y)    
-            lis_cobra.append(lis_cbc)
-            comprimento(lis_cobra)
-            cobra.comp_inicial()
-    elif numerox == 9:
-        blueapple.convercao
-        azul_maca= tela.blit(blueapple.convercao,(blueapple.pos3_x,blueapple.pos3_y))
-        if cobrinha.colliderect(azul_maca):
-            blueapple.convercao
-            blueapple.pos3_x = random.randint(0,(largura-tamanho)/10)*10
-            blueapple.pos3_y = random.randint(0,(altura-tamanho)/10)*10
-            contador += contador
             numerox= 0
             mus = pygame.mixer.Sound(mus_pontuacao)
             pygame.mixer.music.set_volume(0.5)
