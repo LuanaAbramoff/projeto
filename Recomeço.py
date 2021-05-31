@@ -26,13 +26,14 @@ verde_escuro = (0,128,0)
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Snake Retrô')
 
+
 # Musicas e imagens
 fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
 musica_inicio =os.path.join('assets','musicas','musica_inicial.mp3')
 musica_final=os.path.join('assets','musicas', 'musica_fim.mp3') 
-pygame.mixer.music.load(musica_inicio)
-pygame.mixer.music.set_volume(0.4)
-pygame.mixer.music.play(-1)
+# pygame.mixer.music.load(musica_inicio)
+# pygame.mixer.music.set_volume(0.4)
+# pygame.mixer.music.play(-1)
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 mus_pontuacao = os.path.join('assets','musicas','pontuação.wav')
 
@@ -119,12 +120,12 @@ class Cobra:
         self.x += self.x_ctrl
         self.y += self.y_ctrl
         if self.y < 0:
-            self.y = altura
+            self.y = altura - 10
         if self.x < 0:
-            self.x = largura
-        if self.y > altura:
+            self.x = largura - 10
+        if self.y > altura - 10:
             self.y = 0
-        if self.x > largura:
+        if self.x > largura - 10:
             self.x = 0
         
     def comp_inicial(self):
