@@ -2,15 +2,12 @@
 projeto do jogo
 o jogo consiste em deixar a cobra com a o maior tamanho possível
 isso ocorre quando a cobra come as maçãs
-não pode encostar nas paredes do jogo e ne encostar no próprio corpo
-a pontuação é adiquirida conforme as maçãs forem comidas 
+não pode encostar no próprio corpo nem na bombinha que surge durante a partida, caso contrário o jogador perde
+a pontuação é adiquirida conforme as maçãs forem comidas, existem dois tipos de maçãs, vermelha e dourada, a dourada adquiri uma pontuação maior entretanto aparece raramente.
 no jogo há 3 modos
 -fácil
 -médio 
 -díficil
-com o fácil a maçã tem o valor de um ponto 
-no médio a maçã tem 2 pontos 
-no difícil a maçã tem o valor de 4 pontos
 
 # link do jogo pelo You Tube
 

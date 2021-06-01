@@ -28,18 +28,17 @@ pygame.display.set_caption('Snake Retrô')
 
 
 # Musicas e imagens
-fundo_jogo = pygame.image.load('assets/Imagens/Fundo.jpeg').convert()
+fundo_jogo = pygame.image.load("assets/Imagens/Fundo.jpeg").convert()
 musica_inicio =os.path.join('assets','musicas','musica_inicial.mp3')
 musica_final=os.path.join('assets','musicas', 'musica_fim.mp3') 
 # pygame.mixer.music.load(musica_inicio)
-# pygame.mixer.music.set_volume(0.4)
+# pygame.mixer.music.set_volume(0.4)    
 # pygame.mixer.music.play(-1)
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 mus_pontuacao = os.path.join('assets','musicas','pontuação.wav')
 
 clock = pygame.time.Clock()
 fps = 15
-
 
 
 
@@ -53,7 +52,7 @@ class Maca:
         self.pos_y = random.randint(0,(altura-tamanho)/10)*10
         self.w = 14
         self.h = 14
-        self.img = pygame.image.load('assets/Imagens/maca_Mine.png').convert()
+        self.img = pygame.image.load('assets/Imagens/maca_mine.png').convert_alpha()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
         
 class Maca_dourada:
@@ -62,8 +61,9 @@ class Maca_dourada:
         self.pos2_y = random.randint(0,(altura-tamanho)/10)*10
         self.w = 14
         self.h = 14
-        self.img = pygame.image.load('assets/Imagens/Golden_Apple_JE2_BE2.png').convert()
+        self.img = pygame.image.load('assets/Imagens/Golden_Apple_JE2_BE2.png').convert_alpha()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
+
 
 class Maca_azul:
     def __init__(self):
@@ -72,6 +72,15 @@ class Maca_azul:
         self.w = 14
         self.h = 14
         self.img = pygame.image.load('assets/Imagens/azul_mine.png').convert()
+        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
+
+class Bombinha:
+    def __init__(self):
+        self.pos4_x = random.randint(0,(largura-tamanho)/10)*10
+        self.pos4_y = random.randint(0,(altura-tamanho)/10)*10
+        self.w = 20
+        self.h = 20
+        self.img = pygame.image.load('assets/Imagens/bombinha.png').convert_alpha()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
 
 class Cobra:
@@ -189,9 +198,11 @@ cobra = Cobra()
 apple = Maca()
 goldapple= Maca_dourada()
 blueapple= Maca_azul()
+bomber = Bombinha()
 contador = 0
 morte = False
-numerox=0
+numerox = 0
+numeroy = 0
 goldapple.convercao
 gold_maca = tela.blit(goldapple.convercao, (600,600))
 while game:
@@ -221,6 +232,7 @@ while game:
     apple.convercao
     maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
     cobrinha = cobra.img
+    
 
     palavra2.mostra(340,0)
     cont = textos(str(contador), branco, 27)
@@ -232,7 +244,8 @@ while game:
         apple.pos_y = random.randint(0,(altura-tamanho)/10)*10
         tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
         contador += 1
-        numerox= random.randint(0,10)
+        numerox = random.randint(0,10)
+        numeroy = random.randint(0,8)
         mus = pygame.mixer.Sound(mus_pontuacao)
         pygame.mixer.music.set_volume(0.5)
         mus.play()
@@ -244,6 +257,8 @@ while game:
         lis_cobra.append(lis_cbc)
         comprimento(lis_cobra)
         cobra.comp_inicial()
+
+    
     if numerox == 10:
         goldapple.convercao
         gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
@@ -252,7 +267,7 @@ while game:
             goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
             goldapple.pos2_y = random.randint(0,(altura-tamanho)/10)*10
             contador += 10
-            numerox= 0
+            numerox = 0
             mus = pygame.mixer.Sound(mus_pontuacao)
             pygame.mixer.music.set_volume(0.5)
             mus.play()
@@ -264,6 +279,15 @@ while game:
             lis_cobra.append(lis_cbc)
             comprimento(lis_cobra)
             cobra.comp_inicial()
+
+
+    if numeroy == 5:
+        bomber.convercao
+        bomba = tela.blit(bomber.convercao, (bomber.pos4_x,bomber.pos4_y))
+        if cobrinha.colliderect(bomba):
+            game = False
+            morte = True
+
     x = cobra.x
     y = cobra.y
     lis_cbc = []
@@ -274,6 +298,7 @@ while game:
     if lis_cobra.count(lis_cbc) > 1:
         game = False
         morte = True
+
     
     if len(lis_cobra) > cobra.compr_inicial:
         del lis_cobra[0]
