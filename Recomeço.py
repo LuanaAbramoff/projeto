@@ -206,69 +206,50 @@ numerox = 0
 numeroy = 0
 goldapple.convercao
 gold_maca = tela.blit(goldapple.convercao, (600,600))
-while game:
-    clock.tick(fps)
-    tela.fill(preto)
-    tela.blit(fundo_jogo, (0,0))
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            game = False
+sair= False
+while not sair:
+    while game:
+        clock.tick(fps)
+        tela.fill(preto)
+        tela.blit(fundo_jogo, (0,0))
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                game = False
+                sair= True
 
-        if event.type == KEYDOWN:
-            if event.key == K_a or event.key == K_LEFT:
-                cobra.movimento_a()
-                
-            if event.key == K_d or event.key == K_RIGHT:
-                cobra.movimento_d()
+            if event.type == KEYDOWN:
+                if event.key == K_a or event.key == K_LEFT:
+                    cobra.movimento_a()
+                    
+                if event.key == K_d or event.key == K_RIGHT:
+                    cobra.movimento_d()
 
-            if event.key == K_s or event.key == K_DOWN:
-                cobra.movimento_s()
+                if event.key == K_s or event.key == K_DOWN:
+                    cobra.movimento_s()
 
-            if event.key == K_w or event.key == K_UP:
-                cobra.movimento_w()
+                if event.key == K_w or event.key == K_UP:
+                    cobra.movimento_w()
 
-    cobra.mov()
+        cobra.mov()
 
-    cobra.imagem()
-    apple.convercao
-    maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
-    cobrinha = cobra.img
-    
-
-    palavra2.mostra(340,0)
-    cont = textos(str(contador), branco, 27)
-    cont.mostra(445,0)
-
-    if cobrinha.colliderect(maca):
+        cobra.imagem()
         apple.convercao
-        apple.pos_x = random.randint(0,(largura-tamanho)/10)*10
-        apple.pos_y = random.randint(0,(altura-tamanho)/10)*10
-        tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
-        contador += 1
-        numerox = random.randint(0,10)
-        numeroy = random.randint(0,8)
-        mus = pygame.mixer.Sound(mus_pontuacao)
-        pygame.mixer.music.set_volume(0.5)
-        mus.play()
+        maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
+        cobrinha = cobra.img
+        
 
-        x = cobra.x
-        y = cobra.y
-        lis_cbc.append(x)
-        lis_cbc.append(y)    
-        lis_cobra.append(lis_cbc)
-        comprimento(lis_cobra)
-        cobra.comp_inicial()
+        palavra2.mostra(340,0)
+        cont = textos(str(contador), branco, 27)
+        cont.mostra(445,0)
 
-    
-    if numerox == 10:
-        goldapple.convercao
-        gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
-        if cobrinha.colliderect(gold_maca):
-            goldapple.convercao
-            goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
-            goldapple.pos2_y = random.randint(0,(altura-tamanho)/10)*10
-            contador += 10
-            numerox = 0
+        if cobrinha.colliderect(maca):
+            apple.convercao
+            apple.pos_x = random.randint(0,(largura-tamanho)/10)*10
+            apple.pos_y = random.randint(0,(altura-tamanho)/10)*10
+            tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
+            contador += 1
+            numerox = random.randint(0,10)
+            numeroy = random.randint(0,8)
             mus = pygame.mixer.Sound(mus_pontuacao)
             pygame.mixer.music.set_volume(0.5)
             mus.play()
@@ -281,52 +262,77 @@ while game:
             comprimento(lis_cobra)
             cobra.comp_inicial()
 
+        
+        if numerox == 10:
+            goldapple.convercao
+            gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
+            if cobrinha.colliderect(gold_maca):
+                goldapple.convercao
+                goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
+                goldapple.pos2_y = random.randint(0,(altura-tamanho)/10)*10
+                contador += 10
+                numerox = 0
+                mus = pygame.mixer.Sound(mus_pontuacao)
+                pygame.mixer.music.set_volume(0.5)
+                mus.play()
 
-    if numeroy == 5:
-        bomber.convercao
-        bomba = tela.blit(bomber.convercao, (bomber.pos4_x,bomber.pos4_y))
-        if cobrinha.colliderect(bomba):
+                x = cobra.x
+                y = cobra.y
+                lis_cbc.append(x)
+                lis_cbc.append(y)    
+                lis_cobra.append(lis_cbc)
+                comprimento(lis_cobra)
+                cobra.comp_inicial()
+
+
+        if numeroy == 5:
+            bomber.convercao
+            bomba = tela.blit(bomber.convercao, (bomber.pos4_x,bomber.pos4_y))
+            if cobrinha.colliderect(bomba):
+                game = False
+                morte = True
+
+        x = cobra.x
+        y = cobra.y
+        lis_cbc = []
+        lis_cbc.append(x)
+        lis_cbc.append(y)
+        lis_cobra.append(lis_cbc)
+
+        if lis_cobra.count(lis_cbc) > 1:
             game = False
             morte = True
 
-    x = cobra.x
-    y = cobra.y
-    lis_cbc = []
-    lis_cbc.append(x)
-    lis_cbc.append(y)
-    lis_cobra.append(lis_cbc)
-
-    if lis_cobra.count(lis_cbc) > 1:
-        game = False
-        morte = True
-
-    
-    if len(lis_cobra) > cobra.compr_inicial:
-        del lis_cobra[0]
         
-    comprimento(lis_cobra)
-    
-    pygame.display.update()
+        if len(lis_cobra) > cobra.compr_inicial:
+            del lis_cobra[0]
+            
+        comprimento(lis_cobra)
+        
+        pygame.display.update()
 
-pygame.mixer.music.pause()
-pygame.mixer.music.load(musica_final)
-pygame.mixer.music.set_volume(0.1) 
-pygame.mixer.music.play(1)
-while morte:
-    tela.fill(preto)
-    palavra.mostra(110,0)
-    palavra2.mostra(80,160) #pontuação
-    cont.mostra(200,160)
-    palavra3.mostra(175,210)
-    palavra4.mostra(5,210)
+    pygame.mixer.music.pause()
+    pygame.mixer.music.load(musica_final)
+    pygame.mixer.music.set_volume(0.1) 
+    pygame.mixer.music.play(1)
+    while morte:
+        tela.fill(preto)
+        palavra.mostra(110,0)
+        palavra2.mostra(80,160) #pontuação
+        cont.mostra(200,160)
+        palavra3.mostra(175,210)
+        palavra4.mostra(5,210)
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            morte = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                morte=False
-                #falta colocar o reinicio
-    pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                morte = False
+                sair= True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    morte=False
+                    game= True
+                    
+                    #falta colocar o reinicio
+        pygame.display.update()
 
 pygame.quit()
