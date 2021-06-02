@@ -151,7 +151,8 @@ palavra3 = textos("Aperte Espaço", branco,27)
 palavra4 = textos("Deseja continuar?", branco,27)
 palavra5 = textos("Snake Retrô", branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
-
+palavra7 = textos('Record: ', branco, 27)
+record = 0
 sair = False
 while not sair:
     pygame.mixer.music.load(musica_inicio)
@@ -242,6 +243,8 @@ while not sair:
         palavra2.mostra(340,0)
         cont = textos(str(contador), branco, 27)
         cont.mostra(445,0)
+        if contador > record:
+            record = contador
 
         if cobrinha.colliderect(maca):
             apple.convercao
@@ -316,6 +319,7 @@ while not sair:
     pygame.mixer.music.load(musica_final)
     pygame.mixer.music.set_volume(0.1) 
     pygame.mixer.music.play(1)
+    
     while morte:
         tela.fill(preto)
         palavra.mostra(110,0)
@@ -323,6 +327,10 @@ while not sair:
         cont.mostra(200,160)
         palavra3.mostra(175,210)
         palavra4.mostra(5,210)
+        palavra7.mostra(80, 180)
+        recorde = textos(str(record), branco, 27)
+        recorde.mostra(200, 180)
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
