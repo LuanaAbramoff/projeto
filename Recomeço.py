@@ -4,6 +4,7 @@ import os
 
 from pygame.constants import KEYDOWN, K_BACKSPACE, K_DOWN, K_LEFT, K_RIGHT, K_UP, K_a, K_d, K_r, K_s, K_w, QUIT
 
+
 pygame.init()
 
 # Definindo medidas
