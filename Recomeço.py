@@ -32,9 +32,6 @@ pygame.display.set_caption('Snake Retrô')
 fundo_jogo = pygame.image.load("assets/Imagens/Fundo.jpeg").convert()
 musica_inicio =os.path.join('assets','musicas','musica_inicial.mp3')
 musica_final=os.path.join('assets','musicas', 'musica_fim.mp3') 
-# pygame.mixer.music.load(musica_inicio)
-# pygame.mixer.music.set_volume(0.4)    
-# pygame.mixer.music.play(-1)
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 mus_pontuacao = os.path.join('assets','musicas','pontuação.wav')
 
@@ -155,59 +152,63 @@ palavra4 = textos("Deseja continuar?", branco,27)
 palavra5 = textos("Snake Retrô", branco,35)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
 
-inicio_do_jogo = True
-while inicio_do_jogo:
-    tela.blit(menu,(0,0)) 
-    # escolha da dificuldade 
-    pygame.draw.rect(tela, cinzaClaro, [23, 160, 139, 31])
-    pygame.draw.rect(tela, preto, [25, 162, 135, 27])
-    facil = textos("Fácil(1)", branco, 30)
-    facil.mostra(60, 166)
-
-    pygame.draw.rect(tela, cinzaClaro, [173, 160, 139, 31])
-    pygame.draw.rect(tela, preto, [175, 162, 135, 27])
-    medio = textos("Médio(2)", branco, 30)
-    medio.mostra(199, 166)
-
-    pygame.draw.rect(tela, cinzaClaro, [323, 160, 139, 31])
-    pygame.draw.rect(tela, preto, [325, 162, 135, 27])
-    dificil = textos("Díficil(3)", vermelho, 30)
-    dificil.mostra(353, 166)
-    pygame.display.update()
-    #Escolha da dificuldade do jogo
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            inicio_do_jogo=False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_1:
-                fps = 10
-                game = True
-                inicio_do_jogo = False
-            elif event.key == pygame.K_2:
-                fps = 15
-                game = True
-                inicio_do_jogo = False
-            elif event.key == pygame.K_3:
-                fps = 30
-                game = True
-                inicio_do_jogo = False
-
-
-palavra2 = textos("Pontuação: " , branco, 27)
-lis_cobra = []
-cobra = Cobra()
-apple = Maca()
-goldapple= Maca_dourada()
-blueapple= Maca_azul()
-bomber = Bombinha()
-contador = 0
-morte = False
-numerox = 0
-numeroy = 0
-goldapple.convercao
-gold_maca = tela.blit(goldapple.convercao, (600,600))
-sair= False
+sair = False
 while not sair:
+    pygame.mixer.music.load(musica_inicio)
+    pygame.mixer.music.set_volume(0.4)    
+    pygame.mixer.music.play(-1)
+    inicio_do_jogo = True
+    while inicio_do_jogo:
+        tela.blit(menu,(0,0)) 
+        # escolha da dificuldade 
+        pygame.draw.rect(tela, cinzaClaro, [23, 160, 139, 31])
+        pygame.draw.rect(tela, preto, [25, 162, 135, 27])
+        facil = textos("Fácil(1)", branco, 30)
+        facil.mostra(60, 166)
+
+        pygame.draw.rect(tela, cinzaClaro, [173, 160, 139, 31])
+        pygame.draw.rect(tela, preto, [175, 162, 135, 27])
+        medio = textos("Médio(2)", branco, 30)
+        medio.mostra(199, 166)
+
+        pygame.draw.rect(tela, cinzaClaro, [323, 160, 139, 31])
+        pygame.draw.rect(tela, preto, [325, 162, 135, 27])
+        dificil = textos("Díficil(3)", vermelho, 30)
+        dificil.mostra(353, 166)
+        pygame.display.update()
+        #Escolha da dificuldade do jogo
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                inicio_do_jogo=False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    fps = 10
+                    game = True
+                    inicio_do_jogo = False
+                elif event.key == pygame.K_2:
+                    fps = 15
+                    game = True
+                    inicio_do_jogo = False
+                elif event.key == pygame.K_3:
+                    fps = 30
+                    game = True
+                    inicio_do_jogo = False
+
+
+    palavra2 = textos("Pontuação: " , branco, 27)
+    lis_cobra = []
+    cobra = Cobra()
+    apple = Maca()
+    goldapple= Maca_dourada()
+    blueapple= Maca_azul()
+    bomber = Bombinha()
+    contador = 0
+    morte = False
+    numerox = 0
+    numeroy = 0
+    goldapple.convercao
+    gold_maca = tela.blit(goldapple.convercao, (600,600))
+
     while game:
         clock.tick(fps)
         tela.fill(preto)
@@ -326,13 +327,14 @@ while not sair:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 morte = False
-                sair= True
+                sair = True
+                
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    morte=False
-                    game= True
-                    
-                    #falta colocar o reinicio
+                    morte = False
+                    game = True
+                    pygame.mixer.music.pause()
+
         pygame.display.update()
 
 pygame.quit()
