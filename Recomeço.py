@@ -156,7 +156,7 @@ record = 0
 sair = False
 while not sair:
     pygame.mixer.music.load(musica_inicio)
-    pygame.mixer.music.set_volume(0.4)    
+    pygame.mixer.music.set_volume(0.5)    
     pygame.mixer.music.play(-1)
     inicio_do_jogo = True
     while inicio_do_jogo:
@@ -317,7 +317,7 @@ while not sair:
 
     pygame.mixer.music.pause()
     pygame.mixer.music.load(musica_final)
-    pygame.mixer.music.set_volume(0.1) 
+    pygame.mixer.music.set_volume(0.5) 
     pygame.mixer.music.play(1)
     
     while morte:
