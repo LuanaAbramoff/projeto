@@ -145,13 +145,13 @@ class textos:
     def mostra(self, x, y):
             tela.blit(self.texto, [x, y])
 
-palavra = textos("Game Over", vermelho, 80)
-palavra2 = textos("Pontuação: " , branco, 27)
-palavra3 = textos("Aperte Espaço", branco,27)
-palavra4 = textos("Deseja continuar?", branco,27)
-palavra5 = textos("Snake Retrô", branco,35)
+palavra = textos("Game Over", vermelho, 90)
+palavra2 = textos("Pontuação: " , branco, 40)
+palavra3 = textos("Aperte Espaço", branco, 32)
+palavra4 = textos("Deseja continuar?", branco,32)
+palavra5 = textos("Snake Retrô", branco,27)
 palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
-palavra7 = textos('Record: ', branco, 27)
+palavra7 = textos('Record: ', branco, 38)
 record = 0
 sair = False
 while not sair:
@@ -322,14 +322,14 @@ while not sair:
     
     while morte:
         tela.fill(preto)
-        palavra.mostra(110,0)
-        palavra2.mostra(80,160) #pontuação
-        cont.mostra(200,160)
-        palavra3.mostra(175,210)
-        palavra4.mostra(5,210)
-        palavra7.mostra(80, 180)
-        recorde = textos(str(record), branco, 27)
-        recorde.mostra(200, 180)
+        palavra.mostra(70,5)
+        palavra2.mostra(150,100) #pontuação
+        cont.mostra(255,100)
+        palavra3.mostra(280,260)
+        palavra4.mostra(80,260)
+        palavra7.mostra(150, 180)
+        recorde = textos(str(record), branco, 35)
+        recorde.mostra(255, 180)
 
 
         for event in pygame.event.get():
