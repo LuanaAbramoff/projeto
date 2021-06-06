@@ -43,7 +43,7 @@ fps = 15
 def comprimento(lis_cobra):
     for XeY in lis_cobra:
         pygame.draw.rect(tela, verde_escuro, (XeY[0], XeY[1], tamanho, tamanho))
-
+# defenindo objetos 
 class Maca:
     def __init__(self):
         self.pos_x = random.randint(0,(largura-tamanho)/10)*10
@@ -93,7 +93,7 @@ class Cobra:
 
     def imagem(self):
         self.img = pygame.draw.rect(tela, verde_escuro, (self.x, self.y, tamanho, tamanho) )
-
+# movimentos da cobra
     def movimento_a(self):
         if self.x_ctrl == 10:
             pass
@@ -137,14 +137,14 @@ class Cobra:
         
     def comp_inicial(self):
         self.compr_inicial += 1
-       
+       # mostrar pontuacao 
 class textos:
     def __init__(self, msg, cor, tam):
             self.font = pygame.font.SysFont(None, tam)
             self.texto = self.font.render(msg, True, cor)
     def mostra(self, x, y):
             tela.blit(self.texto, [x, y])
-
+# defenindo palavras 
 palavra = textos("Game Over", vermelho, 90)
 palavra2 = textos("Pontuação: " , branco, 40)
 palavra3 = textos("Aperte Espaço", branco, 32)
@@ -154,6 +154,7 @@ palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
 palavra7 = textos('Record: ', branco, 38)
 record = 0
 sair = False
+# loop do jogo
 while not sair:
     pygame.mixer.music.load(musica_inicio)
     pygame.mixer.music.set_volume(0.5)    
@@ -195,7 +196,7 @@ while not sair:
                     game = True
                     inicio_do_jogo = False
 
-
+# defenindo variaveis 
     palavra2 = textos("Pontuação: " , branco, 27)
     lis_cobra = []
     cobra = Cobra()
@@ -208,8 +209,8 @@ while not sair:
     numerox = 0
     numeroy = 0
     goldapple.convercao
-    gold_maca = tela.blit(goldapple.convercao, (600,600))
-
+    gold_maca = tela.blit(goldapple.convercao,(600,600))
+# loop da jogabilidade 
     while game:
         clock.tick(fps)
         tela.fill(preto)
@@ -245,7 +246,7 @@ while not sair:
         cont.mostra(445,0)
         if contador > record:
             record = contador
-
+# colisao maca + cobra
         if cobrinha.colliderect(maca):
             apple.convercao
             apple.pos_x = random.randint(0,(largura-tamanho)/10)*10
@@ -266,7 +267,7 @@ while not sair:
             comprimento(lis_cobra)
             cobra.comp_inicial()
 
-        
+        # maca dourada 
         if numerox == 10:
             goldapple.convercao
             gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
@@ -288,7 +289,7 @@ while not sair:
                 comprimento(lis_cobra)
                 cobra.comp_inicial()
 
-
+        # bomba 
         if numeroy == 5:
             bomber.convercao
             bomba = tela.blit(bomber.convercao, (bomber.pos4_x,bomber.pos4_y))
@@ -314,16 +315,16 @@ while not sair:
         comprimento(lis_cobra)
         
         pygame.display.update()
-
+    # musica do final 
     pygame.mixer.music.pause()
     pygame.mixer.music.load(musica_final)
     pygame.mixer.music.set_volume(0.5) 
     pygame.mixer.music.play(1)
-    
+    # loop da morte 
     while morte:
         tela.fill(preto)
         palavra.mostra(70,5)
-        palavra2.mostra(150,100) #pontuação
+        palavra2.mostra(150,100)  #pontuação
         cont.mostra(255,100)
         palavra3.mostra(280,260)
         palavra4.mostra(80,260)
@@ -331,7 +332,7 @@ while not sair:
         recorde = textos(str(record), branco, 35)
         recorde.mostra(255, 180)
 
-
+        # reinicio do jogo caso o jogador queira 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 morte = False
@@ -344,5 +345,5 @@ while not sair:
                     pygame.mixer.music.pause()
 
         pygame.display.update()
-
+# sair do jogo 
 pygame.quit()
