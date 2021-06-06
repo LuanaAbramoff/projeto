@@ -9,6 +9,10 @@ no jogo há 3 modos
 -médio 
 -díficil
 
+# modo de jogo
+podem ser usadas para ir para baixo as teclas S ou seta para baixo. para a direita pode usar D ou seta para direita. para cima pode usar W ou seta para cima. para a esquerda pode usar A ou seta para Esuquerda.
+
+
 # link do jogo pelo You Tube
 
 # integrantes
