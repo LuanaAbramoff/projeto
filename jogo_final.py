@@ -23,7 +23,7 @@ verde_escuro = (0,128,0)
 
 
 
-
+#criando a tela
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Snake Retrô')
 
@@ -35,11 +35,12 @@ musica_final=os.path.join('assets','musicas', 'musica_fim.mp3')
 menu = pygame.image.load('assets/Imagens/Untitled.jpg').convert()
 mus_pontuacao = os.path.join('assets','musicas','pontuação.wav')
 
+#criando o clock e definindo FPS
 clock = pygame.time.Clock()
 fps = 15
 
 
-
+#aumento do tamanho da cobra
 def comprimento(lis_cobra):
     for XeY in lis_cobra:
         pygame.draw.rect(tela, verde_escuro, (XeY[0], XeY[1], tamanho, tamanho))
@@ -60,16 +61,6 @@ class Maca_dourada:
         self.w = 14
         self.h = 14
         self.img = pygame.image.load('assets/Imagens/Golden_Apple_JE2_BE2.png').convert_alpha()
-        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
-
-
-class Maca_azul:
-    def __init__(self):
-        self.pos3_x = random.randint(0,(largura-tamanho)/10)*10
-        self.pos3_y = random.randint(0,(altura-tamanho)/10)*10
-        self.w = 14
-        self.h = 14
-        self.img = pygame.image.load('assets/Imagens/azul_mine.png').convert()
         self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
 
 class Bombinha:
@@ -162,7 +153,7 @@ while not sair:
     inicio_do_jogo = True
     while inicio_do_jogo:
         tela.blit(menu,(0,0)) 
-        # escolha da dificuldade 
+        #Tela inicial/ menu do jogo
         pygame.draw.rect(tela, cinzaClaro, [23, 160, 139, 31])
         pygame.draw.rect(tela, preto, [25, 162, 135, 27])
         facil = textos("Fácil(1)", branco, 30)
@@ -202,7 +193,6 @@ while not sair:
     cobra = Cobra()
     apple = Maca()
     goldapple= Maca_dourada()
-    blueapple= Maca_azul()
     bomber = Bombinha()
     contador = 0
     morte = False
