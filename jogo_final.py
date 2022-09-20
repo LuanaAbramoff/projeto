@@ -84,35 +84,13 @@ class Cobra:
 
     def imagem(self):
         self.img = pygame.draw.rect(tela, verde_escuro, (self.x, self.y, tamanho, tamanho) )
-# movimentos da cobra
-    def movimento_a(self):
-        if self.x_ctrl == 10:
-            pass
-        else:
-            self.x_ctrl = -10
-            self.y_ctrl = 0
-    
-    def movimento_d(self):
-        if self.x_ctrl == -10:
-            pass
-        else:
-            self.x_ctrl = 10
-            self.y_ctrl = 0
 
-    def movimento_w(self):
-        if self.y_ctrl == 10:
+    def movimentacao (self,deltax,deltaxelse,deltayelse):
+        if self.x_ctrl == deltax:
             pass
         else:
-            self.x_ctrl = 0
-            self.y_ctrl = -10
-        
-
-    def movimento_s(self):
-        if self.y_ctrl == -10:
-            pass
-        else:
-            self.x_ctrl = 0
-            self.y_ctrl = 10
+            self.x_ctrl = deltaxelse
+            self.y_ctrl = deltayelse
 
     def mov(self):
         self.x += self.x_ctrl
@@ -212,16 +190,16 @@ while not sair:
 
             if event.type == KEYDOWN:
                 if event.key == K_a or event.key == K_LEFT:
-                    cobra.movimento_a()
+                    cobra.movimentacao(10,-10,0)
                     
                 if event.key == K_d or event.key == K_RIGHT:
-                    cobra.movimento_d()
+                    cobra.movimentacao(-10,10,0)
 
                 if event.key == K_s or event.key == K_DOWN:
-                    cobra.movimento_s()
+                    cobra.movimentacao(10,0,-10)
 
                 if event.key == K_w or event.key == K_UP:
-                    cobra.movimento_w()
+                    cobra.movimentacao(-10,0,10)
 
         cobra.mov()
 
