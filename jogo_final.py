@@ -1,6 +1,7 @@
 import pygame
 import random
 import os
+from Objetos import Bombinha, Maca_dourada, Maca, Textos, Cobra
 
 from pygame.constants import KEYDOWN, K_BACKSPACE, K_DOWN, K_LEFT, K_RIGHT, K_UP, K_a, K_d, K_r, K_s, K_w, QUIT
 
@@ -21,12 +22,9 @@ preto = (0, 0, 0)
 cinzaClaro = (220,220,220)
 verde_escuro = (0,128,0)
 
-
-
 #criando a tela
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Snake Retrô')
-
 
 # Musicas e imagens
 fundo_jogo = pygame.image.load("assets/Imagens/Fundo.jpeg").convert()
@@ -39,113 +37,19 @@ mus_pontuacao = os.path.join('assets','musicas','pontuação.wav')
 clock = pygame.time.Clock()
 fps = 15
 
-
-#aumento do tamanho da cobra
-def comprimento(lis_cobra):
-    for XeY in lis_cobra:
-        pygame.draw.rect(tela, verde_escuro, (XeY[0], XeY[1], tamanho, tamanho))
-# defenindo objetos 
-class Maca:
-    def __init__(self):
-        self.pos_x = random.randint(0,(largura-tamanho)/10)*10
-        self.pos_y = random.randint(0,(altura-tamanho)/10)*10
-        self.w = 14
-        self.h = 14
-        self.img = pygame.image.load('assets/Imagens/maca_mine.png').convert_alpha()
-        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
-        
-class Maca_dourada:
-    def __init__(self):
-        self.pos2_x = random.randint(0,(largura-tamanho)/10)*10
-        self.pos2_y = random.randint(0,(altura-tamanho)/10)*10
-        self.w = 14
-        self.h = 14
-        self.img = pygame.image.load('assets/Imagens/Golden_Apple_JE2_BE2.png').convert_alpha()
-        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
-
-class Bombinha:
-    def __init__(self):
-        self.pos4_x = random.randint(0,(largura-tamanho)/10)*10
-        self.pos4_y = random.randint(0,(altura-tamanho)/10)*10
-        self.w = 20
-        self.h = 20
-        self.img = pygame.image.load('assets/Imagens/bombinha.png').convert_alpha()
-        self.convercao = pygame.transform.scale(self.img, (self.w, self.h))
-
-class Cobra:
-    def __init__(self):
-        self.x = random.randint(0,largura - tamanho)
-        self.y = random.randint(0, altura - tamanho)
-        self.vel_y = 10
-        self.vel_x = 10
-        self.x_ctrl = 10
-        self.y_ctrl = 0
-        self.compr_inicial = 1
-
-    def imagem(self):
-        self.img = pygame.draw.rect(tela, verde_escuro, (self.x, self.y, tamanho, tamanho) )
-# movimentos da cobra
-    def movimento_a(self):
-        if self.x_ctrl == 10:
-            pass
-        else:
-            self.x_ctrl = -10
-            self.y_ctrl = 0
-    
-    def movimento_d(self):
-        if self.x_ctrl == -10:
-            pass
-        else:
-            self.x_ctrl = 10
-            self.y_ctrl = 0
-
-    def movimento_w(self):
-        if self.y_ctrl == 10:
-            pass
-        else:
-            self.x_ctrl = 0
-            self.y_ctrl = -10
-        
-
-    def movimento_s(self):
-        if self.y_ctrl == -10:
-            pass
-        else:
-            self.x_ctrl = 0
-            self.y_ctrl = 10
-
-    def mov(self):
-        self.x += self.x_ctrl
-        self.y += self.y_ctrl
-        if self.y < 0:
-            self.y = altura - 10
-        if self.x < 0:
-            self.x = largura - 10
-        if self.y > altura - 10:
-            self.y = 0
-        if self.x > largura - 10:
-            self.x = 0
-        
-    def comp_inicial(self):
-        self.compr_inicial += 1
-       # mostrar pontuacao 
-class textos:
-    def __init__(self, msg, cor, tam):
-            self.font = pygame.font.SysFont(None, tam)
-            self.texto = self.font.render(msg, True, cor)
-    def mostra(self, x, y):
-            tela.blit(self.texto, [x, y])
 # defenindo palavras 
-palavra = textos("Game Over", vermelho, 90)
-palavra2 = textos("Pontuação: " , branco, 40)
-palavra3 = textos("Aperte Espaço", branco, 32)
-palavra4 = textos("Deseja continuar?", branco,32)
-palavra5 = textos("Snake Retrô", branco,27)
-palavra6 = textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
-palavra7 = textos('Record: ', branco, 38)
+palavra = Textos.Textos("Game Over", vermelho, 90)
+palavra2 = Textos.Textos("Pontuação: " , branco, 40)
+palavra3 = Textos.Textos("Aperte Espaço", branco, 32)
+palavra4 = Textos.Textos("Deseja continuar?", branco,32)
+palavra5 = Textos.Textos("Snake Retrô", branco,27)
+palavra6 = Textos.Textos("Escolha o nível de dificuldade do jogo:", vermelho,27)
+palavra7 = Textos.Textos('Record: ', branco, 38)
 record = 0
-sair = False
+
+
 # loop do jogo
+sair = False
 while not sair:
     pygame.mixer.music.load(musica_inicio)
     pygame.mixer.music.set_volume(0.5)    
@@ -156,17 +60,17 @@ while not sair:
         #Tela inicial/ menu do jogo
         pygame.draw.rect(tela, cinzaClaro, [23, 160, 139, 31])
         pygame.draw.rect(tela, preto, [25, 162, 135, 27])
-        facil = textos("Fácil(1)", branco, 30)
+        facil = Textos.Textos("Fácil(1)", branco, 30)
         facil.mostra(60, 166)
 
         pygame.draw.rect(tela, cinzaClaro, [173, 160, 139, 31])
         pygame.draw.rect(tela, preto, [175, 162, 135, 27])
-        medio = textos("Médio(2)", branco, 30)
+        medio = Textos.Textos("Médio(2)", branco, 30)
         medio.mostra(199, 166)
 
         pygame.draw.rect(tela, cinzaClaro, [323, 160, 139, 31])
         pygame.draw.rect(tela, preto, [325, 162, 135, 27])
-        dificil = textos("Díficil(3)", vermelho, 30)
+        dificil = Textos.Textos("Díficil(3)", vermelho, 30)
         dificil.mostra(353, 166)
         pygame.display.update()
         #Escolha da dificuldade do jogo
@@ -188,16 +92,15 @@ while not sair:
                     inicio_do_jogo = False
 
 # defenindo variaveis 
-    palavra2 = textos("Pontuação: " , branco, 27)
-    lis_cobra = []
-    cobra = Cobra()
-    apple = Maca()
-    goldapple= Maca_dourada()
-    bomber = Bombinha()
+    palavra2 = Textos.Textos("Pontuação: " , branco, 27)
+    cobra = Cobra.Cobra()
+    apple = Maca.Maca()
+    goldapple= Maca_dourada.Maca_dourada()
+    bomber = Bombinha.Bombinha()
     contador = 0
     morte = False
-    numerox = 0
-    numeroy = 0
+    numero_maca_dourada = 0
+    numero_bomba = 0
     goldapple.convercao
     gold_maca = tela.blit(goldapple.convercao,(600,600))
 # loop da jogabilidade 
@@ -205,23 +108,29 @@ while not sair:
         clock.tick(fps)
         tela.fill(preto)
         tela.blit(fundo_jogo, (0,0))
+
+        # Mostra pontuação do jogo
+        palavra2.mostra(340,0)
+        cont = Textos.Textos(str(contador), branco, 27)
+        cont.mostra(445,0)
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 game = False
-                sair= True
+                sair = True
 
             if event.type == KEYDOWN:
                 if event.key == K_a or event.key == K_LEFT:
-                    cobra.movimento_a()
+                    cobra.movimentacao(10,-10,0)
                     
                 if event.key == K_d or event.key == K_RIGHT:
-                    cobra.movimento_d()
+                    cobra.movimentacao(-10,10,0)
 
                 if event.key == K_s or event.key == K_DOWN:
-                    cobra.movimento_s()
+                    cobra.movimentacao(10,0,-10)
 
                 if event.key == K_w or event.key == K_UP:
-                    cobra.movimento_w()
+                    cobra.movimentacao(-10,0,10)
 
         cobra.mov()
 
@@ -230,35 +139,29 @@ while not sair:
         maca = tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
         cobrinha = cobra.img
         
-
-        palavra2.mostra(340,0)
-        cont = textos(str(contador), branco, 27)
-        cont.mostra(445,0)
         if contador > record:
             record = contador
-# colisao maca + cobra
+        # colisao maca + cobra
         if cobrinha.colliderect(maca):
+            #Gerando nova maca
             apple.convercao
             apple.pos_x = random.randint(0,(largura-tamanho)/10)*10
             apple.pos_y = random.randint(0,(altura-tamanho)/10)*10
             tela.blit(apple.convercao, (apple.pos_x,apple.pos_y))
             contador += 1
-            numerox = random.randint(0,10)
-            numeroy = random.randint(0,8)
+            numero_maca_dourada = random.randint(0,10)
+            numero_bomba = random.randint(0,8)
             mus = pygame.mixer.Sound(mus_pontuacao)
             pygame.mixer.music.set_volume(0.5)
             mus.play()
 
-            x = cobra.x
-            y = cobra.y
-            lis_cbc.append(x)
-            lis_cbc.append(y)    
-            lis_cobra.append(lis_cbc)
-            comprimento(lis_cobra)
+            #Alterando Cobra
+            cobra.cabeca()
+            cobra.comprimento(cobra.lis_cobra)
             cobra.comp_inicial()
 
         # maca dourada 
-        if numerox == 10:
+        if numero_maca_dourada == 10:
             goldapple.convercao
             gold_maca=tela.blit(goldapple.convercao,(goldapple.pos2_x,goldapple.pos2_y))
             if cobrinha.colliderect(gold_maca):
@@ -266,43 +169,36 @@ while not sair:
                 goldapple.pos2_x = random.randint(0,(largura-tamanho)/10)*10
                 goldapple.pos2_y = random.randint(0,(altura-tamanho)/10)*10
                 contador += 10
-                numerox = 0
+                numero_maca_dourada = random.randint(0,10)
                 mus = pygame.mixer.Sound(mus_pontuacao)
                 pygame.mixer.music.set_volume(0.5)
                 mus.play()
 
-                x = cobra.x
-                y = cobra.y
-                lis_cbc.append(x)
-                lis_cbc.append(y)    
-                lis_cobra.append(lis_cbc)
-                comprimento(lis_cobra)
+                cobra.cabeca()
+                cobra.comprimento(cobra.lis_cobra)
                 cobra.comp_inicial()
 
         # bomba 
-        if numeroy == 5:
+        if numero_bomba == 5:
             bomber.convercao
             bomba = tela.blit(bomber.convercao, (bomber.pos4_x,bomber.pos4_y))
             if cobrinha.colliderect(bomba):
                 game = False
                 morte = True
 
-        x = cobra.x
-        y = cobra.y
-        lis_cbc = []
-        lis_cbc.append(x)
-        lis_cbc.append(y)
-        lis_cobra.append(lis_cbc)
+        cobra.lis_cbc = []
+        cobra.cabeca()
 
-        if lis_cobra.count(lis_cbc) > 1:
+        #morte da cobra
+        if cobra.lis_cobra.count(cobra.lis_cbc) > 1:
             game = False
             morte = True
-
-        
-        if len(lis_cobra) > cobra.compr_inicial:
-            del lis_cobra[0]
             
-        comprimento(lis_cobra)
+        #corpo da cobra
+        if len(cobra.lis_cobra) > cobra.compr_inicial:
+            del cobra.lis_cobra[0]
+            
+        cobra.comprimento(cobra.lis_cobra)
         
         pygame.display.update()
     # musica do final 
@@ -319,7 +215,7 @@ while not sair:
         palavra3.mostra(280,260)
         palavra4.mostra(80,260)
         palavra7.mostra(150, 180)
-        recorde = textos(str(record), branco, 35)
+        recorde = Textos.Textos(str(record), branco, 35)
         recorde.mostra(255, 180)
 
         # reinicio do jogo caso o jogador queira 
